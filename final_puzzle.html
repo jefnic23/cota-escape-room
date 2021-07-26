@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<head>
+    <title>Escape the Carnival of the Animals!</title>
+    <link rel="stylesheet" href='styles.css'>
+</head>
+<body>
+    <div id='main' class='container'>
+        <h1 class='center'>Escape from the Carnival of the Animals!</h1>
+        <p>
+            For the final puzzle you will have to correctly match
+            sheet music excerpts to the corresponding audio.
+            Listen and follow along closely, there isn't much time!
+        </p>
+        <div class='center' style="padding-top: 1rem;">
+            <input type="text" id='password' placeholder="enter the password" autofocus='true'>
+            <input type='submit' id='submit' onClick='checkAnswer()'>
+        </div>
+    </div>
+    <script>
+
+        var input = document.getElementById('password');
+        input.addEventListener('keyup', function(event) {
+            if (event.keyCode == 13) {
+                event.preventDefault();
+                document.getElementById('submit').click();
+            }
+        });
+
+        function checkAnswer() {
+            let password = document.getElementById('password').value.toLowerCase().trim();
+            if (password === 'saint-saens') {
+                document.getElementById('main').classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.replace("quiz.html");
+                }, 550);
+            } else  if (password === 'saint saens' || password === 'saintsaens') {
+                window.alert("you're very close; is there a special symbol you missed?");
+                window.location.replace("final_puzzle.html");
+            } else if (password === '') {
+                window.alert('come on, you have to at least try!')
+            } else {
+                window.alert("sorry, that's incorrect; there might a clue lying around somewhere...");
+                window.location.replace("final_puzzle.html");
+            }
+        }
+
+    </script>
+</body>

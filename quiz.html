@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<head>
+    <title>Escape the Carnival of the Animals!</title>
+    <link rel="stylesheet" href='styles.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script>
+        var clips = [
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_01_Introduction_et_marche_royale_du_lion.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_02_Poules_et_coqs.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_03_Hémiones_(animaux_véloces).ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_04_Tortues.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_05_L'Éléphant.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_06_Kangourous.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_07_Aquarium.ogg",
+            "Saint-Saens_-_The_Carnival_of_the_Animals_-_13_Le_cygne.ogg"
+        ];
+
+        var pics = [
+            "lion.jpg", "roosters.jpg", "donkeys.jpg", "turtles.jpg", "elephant.jpg", "kangaroos.jpg", "aquarium.jpg", 
+            "long ears.jpg", "cuckoo.jpg", "aviary.jpg", "pianists.jpg", "fossils.jpg", "swan.jpg"
+        ];
+
+        var answers = [
+            "lion.jpg", "roosters.jpg", "donkeys.jpg", "turtles.jpg", "elephant.jpg", "kangaroos.jpg", "aquarium.jpg", "swan.jpg"
+        ];
+
+        var questions = [
+            ["swan.jpg", "lion.jpg", "roosters.jpg", "elephant.jpg"],
+            ["kangaroos.jpg", "turtles.jpg", "aquarium.jpg", "roosters.jpg"],
+            ["donkeys.jpg", "elephant.jpg", "swan.jpg", "fossils.jpg"],
+            ["aquarium.jpg", "pianists.jpg", "turtles.jpg", "kangaroos.jpg"],
+            ["elephant.jpg", "swan.jpg", "aviary.jpg", "cuckoo.jpg"],
+            ["long ears.jpg", "kangaroos.jpg", "pianists.jpg", "fossils.jpg"],
+            ["aviary.jpg", "swan.jpg", "cuckoo.jpg", "aquarium.jpg"],
+            ["fossils.jpg", "pianists.jpg", "swan.jpg", "long ears.jpg"]
+        ];
+
+        var current_question = 0;
+        var correct = 0;
+        var guesses = 0;
+        var progress = 0;
+
+    </script>
+</head>
+<body>
+    <div id='main' class='fade-in'>
+        <div class='center' style='padding-top: 3rem;'>
+            <h2 class='center' style='font-family: Comic Sans MS;'>
+                Click the play button to begin listening,<br>
+                then click the matching sheet music
+            </h2>
+            <div style='padding-top: 2rem; display: inline-block; width: 100%;'>
+                <span class='arrow-container'><i id="arrow" class="arrow"></i></span>
+                <audio controls id="audio" class='audio'>
+                    <source id="clip" src="" type="audio/ogg">
+                </audio>
+            </div>
+        </div>
+        <div class='container'>
+            <div class='flex-container'>
+                <div class='excerpt-disabled'>
+                    <i id='icon1'></i>
+                    <img id='answer1' src="">
+                </div>
+                <div class='excerpt-disabled'>
+                    <i id='icon2'></i>
+                    <img id='answer2' src="">
+                </div>
+                <div class='excerpt-disabled'>
+                    <i id='icon3'></i>
+                    <img id='answer3' src="">
+                </div>
+                <div class='excerpt-disabled'>
+                    <i id='icon4'></i>
+                    <img id='answer4' src="">
+                </div>
+            </div>
+        </div>
+        <div class='progress'>
+            <span id='progressbar' style='width: 0%'></span>
+        </div>
+    </div>
+    <script>
+        
+        var c = document.body.childNodes[1]['children'][1]['children'][0]['children'];
+        var bar = document.getElementById('progressbar');
+        var audio = document.getElementById('audio');
+        var arrow = document.getElementById('arrow');
+
+        function enableExcerpts() {
+            for (i=0; i < c.length; i++) {
+                c[i].className = 'excerpt';
+                c[i]['children'][1].setAttribute('onClick', `checkAnswer('answer${i+1}', 'icon${i+1}');`);
+            }
+        }
+
+        function disableExcerpt(i) {
+            c[i].className = 'excerpt-disabled';
+            c[i]['children'][1].setAttribute('onClick', '');
+        }
+
+        function removeArrow() {
+            arrow.style.animation = 'move 750ms both infinite linear, fadeOutAnimation 500ms ease';
+            setTimeout(() => {
+                arrow.className = '';
+                arrow.style.animation = '';
+            }, 500);
+        }
+
+        audio.onplaying = () => {
+            enableExcerpts();
+            if (current_question === 0) {
+                removeArrow();
+            }
+        }
+
+        function checkAnswer(answer, ele) {
+            let guess = document.getElementById(answer).getAttribute('src');
+            let icon = document.getElementById(ele);
+            if (guess === answers[current_question]) {
+                icon.className = "far fa-check-circle fade-in";
+                icon.style = "font-size: 72px; color: lime;";
+                current_question++;
+                correct++;
+                guesses = 0;
+                progress = progress + 20;
+                bar.style = `width: ${progress}%`;
+                let i = 0;
+                var shrink = setInterval(() => {
+                    if (i === 4) {
+                        clearInterval(shrink);
+                    } else {
+                        c[i].style.transform = 'scale(0)';
+                        i++;
+                    }
+                }, 250);
+                if (correct === 5) {
+                    setTimeout(() => {
+                        document.getElementById('main').classList.add('fade-out');
+                    }, 1250);
+                    setTimeout(() => {
+                        window.location.replace("escaped.html");
+                    }, 2000);
+                } else if (current_question === 8 && correct < 5) {
+                    location.reload();
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('clip').src = clips[current_question];
+                        document.getElementById('audio').load();
+                        for (i=0; i < c.length; i++) {
+                            disableExcerpt(i);
+                            c[i]['children'][0].className = '';
+                            c[i]['children'][1].className = '';
+                            c[i]['children'][1].src = questions[current_question][i];
+                            c[i].style.transform = 'scale(1)';
+                            c[i].style.transform = '';
+                        }
+                    }, 1250);
+                }
+            } else {
+                icon.className = "far fa-times-circle fade-in";
+                icon.style = "font-size: 72px; color: red;";
+                disableExcerpt(answer.slice(-1) - 1);
+                guesses++;
+                if (guesses === 2) {
+                    let i = 0;
+                    var shrink = setInterval(() => {
+                        if (i === 4) {
+                            clearInterval(shrink);
+                        } else {
+                            c[i].style.transform = 'rotate(13deg) translateY(1000%)';
+                            i++;
+                        }
+                    }, 250);
+                    current_question++;
+                    setTimeout(() => {
+                        document.getElementById('clip').src = clips[current_question];
+                        document.getElementById('audio').load();
+                        for (i=0; i < c.length; i++) {
+                            disableExcerpt(i);
+                            c[i]['children'][0].className = '';
+                            c[i]['children'][1].className = '';
+                            c[i]['children'][1].src = questions[current_question][i];
+                            c[i].style.transform = 'scale(1)';
+                            c[i].style.transform = '';
+                            guesses = 0;
+                        }
+                    }, 1250);
+                }  
+                if (guesses === 2 && current_question === 8) {
+                    let i = 0;
+                    var shrink = setInterval(() => {
+                        if (i === 4) {
+                            clearInterval(shrink);
+                        } else {
+                            c[i].style.transform = 'rotate(13deg) translateY(1000%)';
+                            i++;
+                        }
+                    }, 250);
+                    setTimeout(() => {
+                        location.reload();
+                    }, 1250);
+                }
+            }
+        }
+
+        document.getElementById('clip').src = clips[current_question]
+        for (i=0; i < c.length; i++) {
+            c[i]['children'][1].className = '';
+            c[i]['children'][1].src = questions[current_question][i];
+        }
+
+    </script>
+</body>
