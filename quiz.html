@@ -49,7 +49,7 @@
                 </audio>
             </div>
         </div>
-        <div class='container'>
+        <div class='quiz-container'>
             <div class='flex-container'>
                 <div class='excerpt-disabled'>
                     <i id='icon1'></i>
@@ -68,7 +68,6 @@
                     <img id='answer4' src="">
                 </div>
             </div>
-        </div>
         <div class='progress'>
             <span id='progressbar' style='width: 0%'></span>
         </div>
@@ -111,6 +110,7 @@
             let guess = document.getElementById(answer).getAttribute('src');
             let icon = document.getElementById(ele);
             if (guess === answers[current_question]) {
+                disableExcerpt(answer.slice(-1) - 1);
                 icon.className = "far fa-check-circle fade-in";
                 icon.style = "font-size: 72px; color: lime;";
                 current_question++;

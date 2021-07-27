@@ -30,13 +30,18 @@ p {
     transform: translateY(-50%) translateX(-50%);
 }
 
+.quiz-container {
+    display: block;
+    position: relative;
+    margin-top: 2rem;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    position: relative;
 }
 
 .excerpt {
@@ -77,6 +82,21 @@ p {
     transition: opacity .5s;
     position: relative;
     z-index: -1;
+}
+
+@media (orientation: portrait) {
+    .flex-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .excerpt {
+        width: 50%;
+    }
+
+    .excerpt-disabled {
+        width: 50%;
+    }
 }
 
 .fade-in {
@@ -141,7 +161,7 @@ p {
 
 @keyframes move {
     0% { right: 0px; }
-    50% { right: 10px; }
+    50% { right: 13px; }
     100% { right: 0px; }
 }
 
@@ -159,40 +179,4 @@ div > i {
     left: 50%;
     transform: translateY(-50%) translateX(-50%); 
     opacity: 1;
-}
-
-@media screen and (max-width: 1080px) {
-    /* .arrow {
-        margin-right: 66%;
-        margin-top: 1.2%;
-    } */
-
-    /* @keyframes move {
-        0% { right: 0%; }
-        50% { right: 1.5%; }
-        100% { right: 0%; }
-    } */
-
-    .container {
-        top: 45%;
-    }
-
-    .flex-container {
-        flex-direction: column;
-        align-content: center;
-    }
-
-    .excerpt {
-        width: 55%;
-    }
-
-    .excerpt-disabled {
-        width: 55%;
-    }
-}
-
-@media screen and (min-width: 1280px) {
-    .container {
-        top: 57.5%;
-    }
 }
