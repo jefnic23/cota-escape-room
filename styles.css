@@ -121,24 +121,32 @@ p {
     transition: width 250ms;
 }
 
+.arrow-container {
+    display: inline-block; 
+    position: relative; 
+    height: 54px; 
+    width: 100px;
+    right: 190px;
+}
+
 .arrow {
+    display: inline-block;
+    position: relative;
     border: solid white;
     border-width: 0 8px 8px 0;
     padding: 10px;
-    transform: rotate(-45deg);
-    margin-right: 58.5%;
-    margin-top: .7%;
-    position: absolute;
+    transform: rotate(-45deg) translateY(60%);
     animation: move 750ms both infinite linear;
 }
 
 @keyframes move {
-    0% { right: 0%; }
-    50% { right: 1%; }
-    100% { right: 0%; }
+    0% { right: 0px; }
+    50% { right: 10px; }
+    100% { right: 0px; }
 }
 
 .audio {
+    display: inline-block;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -154,16 +162,16 @@ div > i {
 }
 
 @media screen and (max-width: 1080px) {
-    .arrow {
+    /* .arrow {
         margin-right: 66%;
         margin-top: 1.2%;
-    }
+    } */
 
-    @keyframes move {
+    /* @keyframes move {
         0% { right: 0%; }
         50% { right: 1.5%; }
         100% { right: 0%; }
-    }
+    } */
 
     .container {
         top: 45%;
