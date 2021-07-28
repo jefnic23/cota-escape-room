@@ -4,30 +4,38 @@
     <link rel="stylesheet" href='styles.css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <script>
-        var clips = [
-            "lion.ogg", "roosters.ogg", "donkeys.ogg", "turtles.ogg", "elephant.ogg", "kangaroos.ogg", "aquarium.ogg", "swan.ogg"
-        ];
+
+        function shuffleArray(array) {
+            for (var i = array.length - 1; i > 0; i--) {
+                var j = Math.floor(Math.random() * (i + 1));
+                var temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+            }
+            return array;
+        }
+
+        function populateQuestions(answers) {
+            let used = [];
+            let questions = [];
+            for (var i = 0; i < answers.length; i++) {
+                let wrong_answers = shuffleArray(pics.filter(pic => pic !== answers[i] && !used.includes(pic)).slice(0,3));
+                questions.push(shuffleArray(wrong_answers.concat(answers[i])));
+                used.push(answers[i]);
+            }
+            return questions;
+        }
 
         var pics = [
             "lion.jpg", "roosters.jpg", "donkeys.jpg", "turtles.jpg", "elephant.jpg", "kangaroos.jpg", "aquarium.jpg", 
             "long ears.jpg", "cuckoo.jpg", "aviary.jpg", "pianists.jpg", "fossils.jpg", "swan.jpg"
         ];
 
-        var answers = [
+        var answers = shuffleArray([
             "lion.jpg", "roosters.jpg", "donkeys.jpg", "turtles.jpg", "elephant.jpg", "kangaroos.jpg", "aquarium.jpg", "swan.jpg"
-        ];
+        ]);
 
-        var questions = [
-            ["swan.jpg", "lion.jpg", "roosters.jpg", "elephant.jpg"],
-            ["kangaroos.jpg", "turtles.jpg", "aquarium.jpg", "roosters.jpg"],
-            ["donkeys.jpg", "elephant.jpg", "swan.jpg", "fossils.jpg"],
-            ["aquarium.jpg", "pianists.jpg", "turtles.jpg", "kangaroos.jpg"],
-            ["elephant.jpg", "swan.jpg", "aviary.jpg", "cuckoo.jpg"],
-            ["long ears.jpg", "kangaroos.jpg", "pianists.jpg", "fossils.jpg"],
-            ["aviary.jpg", "swan.jpg", "cuckoo.jpg", "aquarium.jpg"],
-            ["fossils.jpg", "pianists.jpg", "swan.jpg", "long ears.jpg"]
-        ];
-
+        var questions = populateQuestions(answers);
         var current_question = 0;
         var correct = 0;
         var guesses = 0;
@@ -143,7 +151,7 @@
                     location.reload();
                 } else {
                     setTimeout(() => {
-                        document.getElementById('clip').src = clips[current_question];
+                        document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
                         for (i=0; i < c.length; i++) {
                             disableExcerpt(i);
@@ -173,7 +181,7 @@
                     }, 250);
                     current_question++;
                     setTimeout(() => {
-                        document.getElementById('clip').src = clips[current_question];
+                        document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
                         for (i=0; i < c.length; i++) {
                             disableExcerpt(i);
@@ -204,7 +212,7 @@
             }
         }
 
-        document.getElementById('clip').src = clips[current_question]
+        document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
         for (i=0; i < c.length; i++) {
             c[i]['children'][1].className = '';
             c[i]['children'][1].src = questions[current_question][i];
