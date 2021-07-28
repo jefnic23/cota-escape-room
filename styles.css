@@ -15,6 +15,22 @@ p {
     padding: 1rem;
 }
 
+a {
+    text-decoration: none;
+    color: lightblue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.external {
+    background-position: center right;
+    background-repeat: no-repeat;
+    background-image: linear-gradient(transparent,transparent),url('external.svg');
+    padding-right: 13px;
+}
+
 .center {
     margin: auto auto;
     width: 100%;
@@ -33,7 +49,7 @@ p {
 .quiz-container {
     display: block;
     position: relative;
-    margin-top: 6rem;
+    margin-top: 5rem;
 }
 
 .flex-container {
@@ -146,15 +162,14 @@ p {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 100px;
+    width: 72px;
+    height: 72px;
 }
 
 .stopped {
     font-size: 72px;
     color: white;
     position: relative;
-    top: 12.5%;
     animation: move 750ms both infinite linear;
     transition: all 250ms ease;
 }
@@ -164,7 +179,6 @@ p {
     color: white;
     opacity: 35%;
     position: relative;
-    top: 12.5%;
     transition: all 250ms ease;
 }
 
