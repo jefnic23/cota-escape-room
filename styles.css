@@ -33,7 +33,7 @@ p {
 .quiz-container {
     display: block;
     position: relative;
-    margin-top: 2rem;
+    margin-top: 6rem;
 }
 
 .flex-container {
@@ -142,34 +142,36 @@ p {
 }
 
 .arrow-container {
-    display: inline-block; 
-    position: relative; 
-    height: 54px; 
-    width: 100px;
-    right: 190px;
-}
-
-.arrow {
-    display: inline-block;
-    position: relative;
-    border: solid white;
-    border-width: 0 8px 8px 0;
-    padding: 10px;
-    transform: rotate(-45deg) translateY(60%);
-    animation: move 750ms both infinite linear;
-}
-
-@keyframes move {
-    0% { right: 0px; }
-    50% { right: 13px; }
-    100% { right: 0px; }
-}
-
-.audio {
     display: inline-block;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+}
+
+.stopped {
+    font-size: 72px;
+    color: white;
+    position: relative;
+    top: 12.5%;
+    animation: move 750ms both infinite linear;
+    transition: all 250ms ease;
+}
+
+.playing {
+    font-size: 72px;
+    color: white;
+    opacity: 35%;
+    position: relative;
+    top: 12.5%;
+    transition: all 250ms ease;
+}
+
+@keyframes move {
+    0% { transform: scale(0.75); }
+    50% { transform: scale(1.0); }
+    100% { transform: scale(0.75); }
 }
 
 div > i {

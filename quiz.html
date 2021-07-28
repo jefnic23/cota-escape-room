@@ -51,9 +51,9 @@
                 Click the play button to begin listening,<br>
                 then click the matching sheet music
             </h2>
-            <div style='padding-top: 2rem; width: 100%;'>
-                <span class='arrow-container'><i id="arrow" class="arrow"></i></span>
-                <audio controls id="audio" class='audio'>
+            <div style='padding-top: 1rem; width: 100%; display: block;'>
+                <span class='arrow-container'><i id="play" class="far fa-play-circle stopped" onClick="playAudio()"></i></span>
+                <audio id="audio" class='audio' loop>
                     <source id="clip" src="" type="audio/ogg">
                 </audio>
             </div>
@@ -86,7 +86,7 @@
         var c = document.body.childNodes[1]['children'][1]['children'][0]['children'];
         var bar = document.getElementById('progressbar');
         var audio = document.getElementById('audio');
-        var arrow = document.getElementById('arrow');
+        var play = document.getElementById('play');
 
         function enableExcerpts() {
             for (i=0; i < c.length; i++) {
@@ -100,20 +100,16 @@
             c[i]['children'][1].setAttribute('onClick', '');
         }
 
-        function removeArrow() {
-            arrow.style.animation = 'move 750ms both infinite linear, fadeOutAnimation 500ms ease';
-            setTimeout(() => {
-                arrow.className = '';
-                arrow.style.animation = '';
-            }, 500);
+        function playAudio() {
+            if (!audio_played) {
+                audio.play();
+                play.className = "far fa-play-circle playing";
+            }
         }
 
         audio.onplaying = () => {
             if (!audio_played) {
                 enableExcerpts();
-                if (current_question === 0) {
-                    removeArrow();
-                }
                 audio_played = true;
             } 
         }
@@ -153,6 +149,7 @@
                     setTimeout(() => {
                         document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
+                        play.className = "far fa-play-circle stopped";
                         for (i=0; i < c.length; i++) {
                             disableExcerpt(i);
                             c[i]['children'][0].className = '';
@@ -183,6 +180,7 @@
                     setTimeout(() => {
                         document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
+                        play.className = "far fa-play-circle stopped";
                         for (i=0; i < c.length; i++) {
                             disableExcerpt(i);
                             c[i]['children'][0].className = '';
