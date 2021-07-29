@@ -55,11 +55,22 @@
             }
         }
 
+        function fadeAudio() {
+            var fade = setInterval(() => {
+                if (audio.volume > 0.1) {
+                    audio.volume -= 0.1;
+                } else {
+                    clearInterval(fade);
+                }
+            }, 25);
+        }
+
         function checkAnswer(answer, ele) {
             let guess = document.getElementById(answer).getAttribute('src');
             let icon = document.getElementById(ele);
             if (guess === answers[current_question]) {
                 disableExcerpt(answer.slice(-1) - 1);
+                fadeAudio();
                 icon.className = "far fa-check-circle fade-in";
                 icon.style = "font-size: 72px; color: lime;";
                 current_question++;
@@ -90,6 +101,7 @@
                     setTimeout(() => {
                         document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
+                        audio.volume = 1;
                         play_audio.className = "far fa-play-circle stopped";
                         for (var i=0; i < c.length; i++) {
                             disableExcerpt(i);
@@ -121,6 +133,7 @@
                     setTimeout(() => {
                         document.getElementById('clip').src = answers[current_question].slice(0, -3) + 'ogg';
                         document.getElementById('audio').load();
+                        audio.volume = 1;
                         play_audio.className = "far fa-play-circle stopped";
                         for (var i=0; i < c.length; i++) {
                             disableExcerpt(i);
