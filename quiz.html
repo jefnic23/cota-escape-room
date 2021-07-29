@@ -19,7 +19,7 @@
             let used = [];
             let questions = [];
             for (var i = 0; i < answers.length; i++) {
-                let wrong_answers = shuffleArray(pics.filter(pic => pic !== answers[i] && !used.includes(pic)).slice(0,3));
+                let wrong_answers = shuffleArray(pics.filter(pic => pic !== answers[i] && !used.includes(pic))).slice(0,3);
                 questions.push(shuffleArray(wrong_answers.concat(answers[i])));
                 used.push(answers[i]);
             }
