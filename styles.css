@@ -10,6 +10,8 @@ body {
 
 p {
     text-align: justify; 
+    text-align-last: justify;
+    text-justify: auto;
     width: 400px; 
     margin: auto auto; 
     padding: 1rem;
