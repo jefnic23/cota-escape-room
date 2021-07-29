@@ -31,6 +31,16 @@ a:hover {
     padding-right: 13px;
 }
 
+.license {
+    font-size: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+}
+
 .center {
     margin: auto auto;
     width: 100%;
