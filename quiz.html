@@ -42,6 +42,13 @@
             }
         }
 
+        function disableExcerpts() {
+            for (var i=0; i < c.length; i++) {
+                c[i].className = 'excerpt-disabled';
+                c[i]['children'][1].setAttribute('onClick', '');
+            }
+        }
+
         function disableExcerpt(i) {
             c[i].className = 'excerpt-disabled';
             c[i]['children'][1].setAttribute('onClick', '');
@@ -69,7 +76,7 @@
             let guess = document.getElementById(answer).getAttribute('src');
             let icon = document.getElementById(ele);
             if (guess === answers[current_question]) {
-                disableExcerpt(answer.slice(-1) - 1);
+                disableExcerpts();
                 fadeAudio();
                 icon.className = "far fa-check-circle fade-in";
                 icon.style = "font-size: 72px; color: lime;";
@@ -119,6 +126,7 @@
                 disableExcerpt(answer.slice(-1) - 1);
                 guesses++;
                 if (guesses === 2) {
+                    disableExcerpts();
                     audio_played = false;
                     let i = 0;
                     var shrink = setInterval(() => {
@@ -136,7 +144,6 @@
                         audio.volume = 1;
                         play_audio.className = "far fa-play-circle stopped";
                         for (var i=0; i < c.length; i++) {
-                            disableExcerpt(i);
                             c[i]['children'][0].className = '';
                             c[i]['children'][1].className = '';
                             c[i]['children'][1].src = questions[current_question][i];
@@ -146,7 +153,8 @@
                         }
                     }, 1250);
                 }  
-                if (guesses === 2 && current_question === 8) {
+                if ((guesses === 2 && current_question === 8) || (guesses === 2 && current_question > 2 && correct < 1)) {
+                    disableExcerpts();
                     audio_played = false;
                     let i = 0;
                     var shrink = setInterval(() => {
@@ -158,8 +166,9 @@
                         }
                     }, 250);
                     setTimeout(() => {
-                        location.reload();
-                    }, 1250);
+                        document.getElementById('main').className = 'fade-out';
+                        // location.reload();
+                    }, 750);
                 }
             }
         }
@@ -176,7 +185,7 @@
 <body>
     <div id='main' class='fade-in'>
         <div class='center' style='padding-top: 1rem;'>
-            <h2 class='center' style='font-family: Comic Sans MS;'>
+            <h2 class='center'>
                 Click the play button to begin listening<br>
                 then click the matching sheet music
             </h2>
