@@ -221,3 +221,7 @@ div > i {
 .playing:hover {
     cursor: not-allowed;
 }
+
+#submit:hover {
+    cursor: pointer;
+}
