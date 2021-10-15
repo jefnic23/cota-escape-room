@@ -81,6 +81,7 @@ a:hover {
 
 .excerpt:hover {
     transform: scale(1.08);
+    cursor: pointer;
 }
 
 .excerpt img {
@@ -110,6 +111,10 @@ a:hover {
     transition: opacity .5s;
     position: relative;
     z-index: -1;
+}
+
+.excerpt-disabled:hover {
+    cursor: not-allowed;
 }
 
 @media (orientation: portrait) {
@@ -207,4 +212,12 @@ div > i {
     left: 50%;
     transform: translateY(-50%) translateX(-50%); 
     opacity: 1;
+}
+
+.stopped:hover {
+    cursor: pointer;
+}
+
+.playing:hover {
+    cursor: not-allowed;
 }
