@@ -29,14 +29,11 @@
 
         function checkAnswer() {
             let password = document.getElementById('password').value.toLowerCase().trim();
-            if (password === 'saint-saens') {
+            if (password === 'saint-saens' || password === 'saint saens' || password === 'saintsaens') {
                 document.getElementById('main').classList.add('fade-out');
                 setTimeout(() => {
                     window.location.replace("quiz.html");
                 }, 550);
-            } else  if (password === 'saint saens' || password === 'saintsaens') {
-                window.alert("you're very close; is there a special symbol you missed?");
-                window.location.replace("final_puzzle.html");
             } else if (password === '') {
                 window.alert('come on, you have to at least try!')
             } else {
