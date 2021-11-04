@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <head>
     <title>Congratulations!</title>
-    <link rel="stylesheet" href='styles.css'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
         body {
             margin: 0;
@@ -24,12 +27,10 @@
             margin: 0;
             width: 100vw;
             height: 100vh;
-
-            font-family: 'Comic Sans MS';
             font-size: 89px;
+            font-weight: 700;
             line-height: 100vh;
             text-transform: uppercase;
-            font-weight: lighter;
             color: #ccc;
             text-align: center;
         }
