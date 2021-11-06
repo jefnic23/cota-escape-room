@@ -10,42 +10,31 @@
     </head>
     <body>
         <div id='main' class='container' style='top: 50%;'>
-            <h1 class='center'>Escape from the Carnival of the Animals!</h1>
-            <p>
-                For the final puzzle you will have to correctly match
-                sheet music excerpts to the corresponding audio.
-                There are eight questions and you must get five correct
-                to escape. You get two guesses per question.
+            <p> 
+                Press the "Sleep" button below to hide this message.
+                The screen will appear to be off and students will 
+                have to press the spacebar to wake it up.
             </p>
-            <div class='center' style="padding-top: 1rem;">
-                <input type="text" id='password' placeholder="enter the password" autofocus='true'>
-                <input type='submit' id='submit' onClick='checkAnswer()'>
+            <div class='center'>
+                <input type='submit' value='Sleep' onClick='sleep()'>
             </div>
         </div>
         <script>
 
-            var input = document.getElementById('password');
-            input.addEventListener('keyup', function(event) {
-                if (event.keyCode == 13) {
-                    event.preventDefault();
-                    document.getElementById('submit').click();
-                }
-            });
+            var isAsleep = false;
 
-            function checkAnswer() {
-                let password = document.getElementById('password').value.toLowerCase().trim();
-                if (password === 'saint-saens' || password === 'saint saens' || password === 'saintsaens') {
-                    document.getElementById('main').classList.add('fade-out');
-                    setTimeout(() => {
-                        window.location.replace("{{ url_for('quiz') }}");
-                    }, 550);
-                } else if (password === '') {
-                    window.alert('come on, you have to at least try!')
-                } else {
-                    window.alert("sorry, that's incorrect; there might a clue lying around somewhere...");
-                    window.location.replace("{{ url_for('index') }}");
-                }
+            function sleep() {
+                document.body.classList.add('sleep');
+                document.getElementById('main').style.visibility = 'hidden';
+                isAsleep = true;
             }
+
+            window.addEventListener('keyup', function(event) {
+                if (event.keyCode == 32 && isAsleep) {
+                    window.location.replace("{{ url_for('password') }}");
+                }
+            })
 
         </script>
     </body>
+</html>

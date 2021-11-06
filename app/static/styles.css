@@ -26,6 +26,10 @@ a:hover {
     text-decoration: underline;
 }
 
+.sleep {
+    background-color: black;
+}
+
 .external {
     background-position: center right;
     background-repeat: no-repeat;
