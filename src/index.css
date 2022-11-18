@@ -1,0 +1,39 @@
+* {
+	font-family: "Roboto", sans-serif;
+	overflow: hidden;
+	color: #fff;
+	box-sizing: border-box;
+}
+
+body {
+  background: #121213;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+	from {
+	  opacity: 0;
+	}
+  
+	to {
+	  opacity: 1;
+	}
+  }
+  
+  .fadeIn {
+	animation-name: fadeIn;
+  }
+  
+  @keyframes fadeOut {
+	from {
+	  opacity: 1;
+	}
+  
+	to {
+	  opacity: 0;
+	}
+  }
+  
+  .fadeOut {
+	animation-name: fadeOut;
+  }

@@ -1,0 +1,25 @@
+.wrapper {
+    width: 350px;
+    text-align: justify;
+    text-align-last: justify;
+    line-height: 1.34;
+}
+
+.button {
+	width: 89px;
+	height: 55px;
+	color: #fff;
+	background-color: #3A3B3C;
+	border-color: #fff;
+	border-style: solid;
+	border-radius: 5px;
+	font-size: 1rem;
+	font-weight: 500;
+	transition: background-color 0.13s;
+	-webkit-tap-highlight-color: #504A4B;
+}
+
+.button:hover {
+    cursor: pointer;
+    background-color: #504A4B;
+}
