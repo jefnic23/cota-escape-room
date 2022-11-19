@@ -1,0 +1,10 @@
+.textInput {
+    width: 233px;
+    padding-left: 13px;
+	color: black;
+	border-color: #fff;
+	border-style: solid;
+	border-radius: 21px;
+	font-size: 1rem;
+	font-weight: 500;
+}

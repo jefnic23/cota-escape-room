@@ -4,6 +4,8 @@ import Reducer from './Reducer';
 const initialState = {
     asleep: false,
     started: false,
+    password: "",
+    playing: false,
 };
 
 const Store = ({children}) => {

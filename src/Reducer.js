@@ -10,6 +10,16 @@ const Reducer = (state, action) => {
                 ...state,
                 started: action.payload
             };
+        case 'SET_PASSWORD':
+            return {
+                ...state,
+                password: action.payload
+            };
+        case 'SET_PLAYING':
+            return {
+                ...state,
+                playing: action.payload
+            };
         default:
             return state;
     }
