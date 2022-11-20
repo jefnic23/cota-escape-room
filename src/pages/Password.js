@@ -17,7 +17,7 @@ export default function Password(props) {
                 There are eight questions and you must get five correct
                 to escape. You get two guesses per question.
             </p>
-            <Form>
+            <Form onSubmit={props.checkAnswer}>
                 <TextInput 
                     type="text" 
                     placeholder="enter the password" 
@@ -25,7 +25,7 @@ export default function Password(props) {
                     onChange={(e) => dispatch({ type: 'SET_PASSWORD', payload: e.target.value })}
                     autoFocus={true} 
                 />
-                <Button type='submit' onClick={props.checkAnswer} />
+                <Button type='submit' />
             </Form>
         </>
     )

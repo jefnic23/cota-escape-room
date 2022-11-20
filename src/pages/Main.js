@@ -3,6 +3,7 @@ import { Context } from '../Store';
 import Container from '../components/Container';
 import Home from './Home';
 import Password from './Password';
+import Quiz from './Quiz';
 
 export default function Main() {
     const [animation, setAnimation] = useState("animate__fadeIn");
@@ -25,10 +26,11 @@ export default function Main() {
         setAnimation("animate__fadeOut");
         setTimeout(() => {
             dispatch({ type: 'SET_ASLEEP', payload: true});
-        }, 1000);
+        }, 500);
     }
 
-    const checkAnswer = () => {
+    const checkAnswer = (ev) => {
+        ev.preventDefault();
         let password = state.password.toLowerCase().trim();
         if (password === 'saint-saens' || password === 'saint saens' || password === 'saintsaens') {
             setAnimation("animate__fadeOut");
@@ -45,8 +47,9 @@ export default function Main() {
 
     return (
         <Container animation={animation}>
-            {!state.asleep && !state.started && <Home sleep={sleep} />} 
-            {!state.asleep && state.started && <Password checkAnswer={checkAnswer} />}
+            {!state.started && <Home sleep={sleep} />} 
+            {state.started && !state.playing && <Password checkAnswer={checkAnswer} />}
+            {state.playing && <Quiz />}
         </Container>
     )
 }
