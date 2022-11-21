@@ -6,6 +6,7 @@ import Clip from '../components/Clip';
 import Image from '../components/Image';
 import Questions from '../components/Questions';
 
+
 function shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
@@ -27,18 +28,25 @@ function populateQuestions(answers) {
     return questions;
 }
 
-export default function Quiz(props) {
+export default function Quiz() {
     const [index, setIndex] = useState(0);
-
     const answers = shuffleArray(Object.keys(Clips));
     const questions = populateQuestions(answers);
+
+    const checkAnswer = (ev) => {
+        let guess = ev.target.id;
+        if (guess === answers[index]) {
+            setIndex(i => i+1);
+            console.log(index);
+        }
+    };
 
     return (
         <>
             <Clip src={ Clips[answers[index]] } />
             <Questions>
                 {questions[index].map((question, i) => 
-                    <Image key={i} id={question} src={Images[question]} alt={question} />
+                    <Image key={i} id={question} src={Images[question]} alt={question} onClick={checkAnswer} />
                 )}
             </Questions>
         </>

@@ -6,6 +6,7 @@ export default function Image(props) {
             src={props.src}
             alt={props.alt}
             id={props.id}
+            onClick={props.onClick}
         />
     )
 }

@@ -1,10 +1,10 @@
 import React from "react";
-import Container from "./Container";
+import styles from '../styles/Questions.module.css';
 
 export default function Questions(props) {
     return (
-        <Container>
+        <div className={styles.grid}>
             {props.children}
-        </Container>
+        </div>
     )
 }

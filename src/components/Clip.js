@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useEffect, useState, useMemo } from "react";
+
 
 export default function Clip(props) {
-    const audio = require(props.src);
+    const [icon, setIcon] = useState('play');
+    const [playing, setPlaying] = useState(false);
+    const audio = useMemo(() => new Audio(props.src), [props.src]);
+
+    const toggle = () => setPlaying(!playing);
+
+    useEffect(() => {
+        if (playing) {
+            audio.play();
+            setIcon('pause');
+        } else {
+            audio.pause();
+            setIcon('play');
+        }
+    }, [playing, audio]);
 
     return (
-        <audio controls={true} loop={true}>
-            <source src={audio} type="audio/ogg" />
-        </audio>
+        <i className={`far fa-${icon}-circle fa-5x`} onClick={toggle} />
     )
 }

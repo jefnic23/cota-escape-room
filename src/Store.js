@@ -3,8 +3,10 @@ import Reducer from './Reducer';
 
 const initialState = {
     asleep: false,
+    awake: false,
     started: false,
     password: "",
+    audio: "",
     playing: false,
 };
 
