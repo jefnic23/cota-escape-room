@@ -4,11 +4,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-}
-
-.grid > img {
-    width: 40%;
-    margin: 2rem 2rem;
-    transition: transform .2s;
-    position: relative;
+    gap: 2em;
+    margin-top: 5em;
 }

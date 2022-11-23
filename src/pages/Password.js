@@ -1,5 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context } from '../Store';
+import { populateQuestions } from '../utils/MakeGame';
+import Images from '../assets/Images';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import TextInput from '../components/TextInput';
@@ -7,6 +9,10 @@ import styles from '../styles/Password.module.css';
 
 export default function Password(props) {
     const [state, dispatch] = useContext(Context);
+
+    useEffect(() => {
+        dispatch({ type: 'SET_QUESTIONS', payload: populateQuestions(state.answers, Images) });
+    }, [dispatch, state.answers]);
 
     return (
         <>

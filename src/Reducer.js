@@ -8,6 +8,10 @@ const Reducer = (state, action) => {
             return { ...state, started: action.payload };
         case 'SET_PASSWORD':
             return { ...state,  password: action.payload };
+        case 'SET_INDEX':
+            return { ...state, index: action.payload };
+        case 'SET_QUESTIONS':
+            return { ...state, questions: action.payload };
         case 'SET_AUDIO':
             return { ...state, audio: action.payload };
         case 'SET_PLAYING':

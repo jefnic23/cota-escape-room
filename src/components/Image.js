@@ -2,11 +2,13 @@ import React from "react";
 
 export default function Image(props) {
     return (
-        <img 
-            src={props.src}
-            alt={props.alt}
-            id={props.id}
-            onClick={props.onClick}
-        />
+        <span className="hvr-shrink">
+            <img 
+                src={props.src}
+                alt={props.alt}
+                id={props.id}
+                onClick={props.onClick}
+            />
+        </span>
     )
 }
