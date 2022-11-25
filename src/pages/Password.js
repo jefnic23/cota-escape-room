@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { Context } from '../Store';
 import { populateQuestions } from '../utils/MakeGame';
+import Clips from '../assets/Clips';
 import Images from '../assets/Images';
 import Button from '../components/Button';
 import Form from '../components/Form';
@@ -11,8 +12,10 @@ export default function Password(props) {
     const [state, dispatch] = useContext(Context);
 
     useEffect(() => {
+        // initialize game
         dispatch({ type: 'SET_QUESTIONS', payload: populateQuestions(state.answers, Images) });
-    }, [dispatch, state.answers]);
+        dispatch({ type: 'SET_AUDIO', payload: new Audio(Clips[state.answers[state.index]]) })
+    }, [dispatch, state.answers, state.index]);
 
     return (
         <>

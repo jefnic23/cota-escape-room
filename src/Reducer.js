@@ -16,6 +16,8 @@ const Reducer = (state, action) => {
             return { ...state, audio: action.payload };
         case 'SET_PLAYING':
             return { ...state, playing: action.payload };
+        case 'SET_PROGRESS':
+            return { ...state, progress: action.payload };
         default:
             return state;
     }

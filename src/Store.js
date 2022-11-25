@@ -14,6 +14,7 @@ const initialState = {
     questions: [],
     audio: "",
     playing: false,
+    progress: 0
 };
 
 const Store = ({children}) => {

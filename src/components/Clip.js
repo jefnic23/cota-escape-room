@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect } from "react";
 
 
 export default function Clip(props) {
-    const [playing, setPlaying] = useState(false);
-    const audio = useMemo(() => new Audio(props.src), [props.src]);
-
-    const toggle = () => setPlaying(!playing);
+    const audio   = props.audio;
+    const playing = props.playing;
+    const toggle  = props.toggle; 
 
     useEffect(() => {
         playing ? audio.play() : audio.pause();
