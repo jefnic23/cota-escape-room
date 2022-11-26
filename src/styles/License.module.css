@@ -1,0 +1,10 @@
+.container {
+    font-size: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 5px;
+}
