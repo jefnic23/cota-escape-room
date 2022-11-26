@@ -1,3 +1,4 @@
 # TODO
 
-- [ ] Implement router
+- [ ] Manage game state in local storage?
+- [ ] QOL improvements

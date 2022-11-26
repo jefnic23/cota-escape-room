@@ -10,6 +10,8 @@ const Reducer = (state, action) => {
             return { ...state,  password: action.payload };
         case 'SET_INDEX':
             return { ...state, index: action.payload };
+        case 'SET_ANSWERS':
+            return { ...state, answers: action.payload };
         case 'SET_QUESTIONS':
             return { ...state, questions: action.payload };
         case 'SET_AUDIO':
@@ -18,6 +20,8 @@ const Reducer = (state, action) => {
             return { ...state, playing: action.payload };
         case 'SET_PROGRESS':
             return { ...state, progress: action.payload };
+        case 'SET_ESCAPED':
+            return { ...state, escaped: action.payload };
         default:
             return state;
     }

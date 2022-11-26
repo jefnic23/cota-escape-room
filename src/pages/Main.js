@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Context } from '../Store';
 import Container from '../components/Container';
+import Escaped from './Escaped';
 import Home from './Home';
 import Password from './Password';
 import Quiz from './Quiz';
@@ -50,7 +51,8 @@ export default function Main() {
         <Container animation={animation}>
             {!state.awake && <Home sleep={sleep} />} 
             {state.awake && !state.started && <Password checkPassword={checkPassword} />}
-            {state.started && <Quiz />}
+            {state.started && !state.escaped && <Quiz />}
+            {state.escaped && <Escaped />}
         </Container>
     )
 }
