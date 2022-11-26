@@ -1,4 +1,6 @@
 # TODO
 
 - [ ] Manage game state in local storage?
-- [ ] QOL improvements
+- [ ] Mobile-friendly fixes
+- [ ] Add Safari support
+- [ ] Various CSS fixes
