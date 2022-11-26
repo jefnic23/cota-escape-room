@@ -7,7 +7,7 @@ export default function ExternalLink(props) {
             className={styles.external}
             href={ props.link }
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
         >
             { props.children }
         </a>

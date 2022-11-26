@@ -52,7 +52,7 @@ export default function Quiz() {
             setAnswered(true);
 
             // check if this is the last question
-            if (state.progress === 80) {
+            if (state.progress === 4) {
                 // end quiz and display 'Escaped' screen
                 dispatch({ type: 'SET_ESCAPED', payload: true });
             } else {

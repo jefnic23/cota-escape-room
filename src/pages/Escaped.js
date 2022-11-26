@@ -1,3 +1,4 @@
+import React from "react";
 import Confetti from "react-confetti";
 import styles from '../styles/Escaped.module.css';
 
